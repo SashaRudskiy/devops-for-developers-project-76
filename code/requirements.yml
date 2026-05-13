@@ -1,6 +1,6 @@
 roles:
   - src: geerlingguy.pip
   - src: geerlingguy.docker
-
+  - src: datadog.datadog
 collections:
   - name: community.docker

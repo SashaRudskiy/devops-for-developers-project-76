@@ -1,11 +1,14 @@
 ---
 - name: Deploy Redmine
-  hosts: all
+  hosts: webservers
   become: true
 
   vars_files:
     - ../group_vars/webservers/vars.yml
     - ../group_vars/webservers/vault.yml
+
+  roles:
+    - datadog.datadog
 
   tasks:
     - name: Create env file
