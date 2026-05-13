@@ -1,0 +1,6 @@
+redmine_port: 3000
+
+db_host: rc1d-xxxxxxxx.mdb.yandexcloud.net
+db_name: redmine
+db_user: redmine
+db_password: "{{ vault_db_password }}"

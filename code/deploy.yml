@@ -1,15 +1,19 @@
+---
 - name: Deploy Redmine
   hosts: all
   become: true
 
+  vars_files:
+    - ../group_vars/webservers/vars.yml
+    - ../group_vars/webservers/vault.yml
+
   tasks:
     - name: Create env file
-      ansible.builtin.template:
+      template:
         src: templates/redmine.env.j2
-        dest: /home/rudskiy/.env
-        mode: '0644'
+        dest: /home/rudskiy/redmine.env
 
-    - name: Run Redmine
+    - name: Run Redmine container
       community.docker.docker_container:
         name: redmine
         image: redmine
@@ -17,4 +21,4 @@
         restart_policy: always
         ports:
           - "{{ redmine_port }}:3000"
-        env_file: /home/rudskiy/.env
+        env_file: /home/rudskiy/redmine.env
